@@ -6,6 +6,7 @@ Objetivo: O propósito principal deste projeto é fornecer ferramentas para cál
 
 Execução dos Scripts: Utilize os scripts Python fornecidos com seus próprios conjuntos de dados agrupados em intervalos para realizar cálculos estatísticos e entender melhor os conceitos da disciplina.
 
+Recomendação: Os códigos estão em .txt, pois os utilizo quando preciso via google colab. Recomendo a utilização da mesma forma, pois as bibliotecas são importadas sem precisar serem instaladas.
 
 
 Funcionalidades
