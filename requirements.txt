@@ -1,0 +1,3 @@
+pandas
+numpy
+scipy.stats import skew, kurtosis
