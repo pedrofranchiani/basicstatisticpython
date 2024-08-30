@@ -1,0 +1,29 @@
+import pandas as pd
+import numpy as np
+from scipy.stats import skew, kurtosis
+
+# Supondo que você já tenha os dados definidos em 'roll'
+# Exemplo de dados
+roll = pd.Series([12, 15, 14, 10, 18, 13, 17, 12, 19, 13])
+
+# Cálculo das estatísticas
+media = roll.mean()  # Média
+moda = roll.mode().iloc[0] if not roll.mode().empty else np.nan  # Moda (trata o caso de múltiplas modas)
+mediana = roll.median()  # Mediana
+variancia = roll.var(ddof=0)  # Variância populacional
+desvio_padrao = roll.std(ddof=0)  # Desvio padrão populacional
+coef_variação = (desvio_padrao / media) * 100  # Coeficiente de variação
+erro_padrao = desvio_padrao / np.sqrt(len(roll))  # Erro padrão
+coef_assimetria = skew(roll, bias=False)  # Coeficiente de assimetria
+curtose_valor = kurtosis(roll, bias=False)  # Curtose
+
+# Exibindo os resultados
+print(f"Média: {media}")
+print(f"Moda: {moda}")
+print(f"Mediana: {mediana}")
+print(f"Variância: {variancia}")
+print(f"Desvio Padrão: {desvio_padrao}")
+print(f"Coeficiente de Variação: {coef_variação:.2f}%")
+print(f"Erro Padrão: {erro_padrao}")
+print(f"Coeficiente de Assimetria: {coef_assimetria}")
+print(f"Curtose: {curtose_valor}")

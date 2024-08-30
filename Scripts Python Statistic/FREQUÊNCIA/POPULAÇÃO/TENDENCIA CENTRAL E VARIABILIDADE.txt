@@ -1,0 +1,49 @@
+import pandas as pd
+import numpy as np
+from scipy.stats import skew, kurtosis
+
+# Dados agrupados por frequência
+dados = pd.DataFrame({
+    'valores': [10, 20, 30, 40, 50],  # Exemplo de valores dos dados
+    'frequencia': [3, 7, 12, 5, 3]    # Frequência de cada valor
+})
+
+# Calculando a frequência total
+total_frequencia = dados['frequencia'].sum()
+
+# Calculando a média ponderada (média da população)
+media = (dados['valores'] * dados['frequencia']).sum() / total_frequencia
+
+# Calculando a mediana
+dados = dados.loc[dados.index.repeat(dados['frequencia'])].reset_index(drop=True)  # Expandindo os dados com base na frequência
+mediana = dados['valores'].median()
+
+# Calculando a moda
+moda = dados['valores'].mode().iloc[0] if not dados['valores'].mode().empty else np.nan
+
+# Variância populacional
+variancia = ((dados['valores'] - media) ** 2).sum() / total_frequencia
+
+# Desvio padrão populacional
+desvio_padrao = np.sqrt(variancia)
+
+# Coeficiente de variação
+coef_variação = (desvio_padrao / media) * 100
+
+# Erro padrão da média
+erro_padrao = desvio_padrao / np.sqrt(total_frequencia)
+
+# Coeficiente de assimetria e curtose (utilizando dados expandidos)
+coef_assimetria = skew(dados['valores'], bias=False)
+curtose_valor = kurtosis(dados['valores'], bias=False)
+
+# Exibindo os resultados
+print(f"Média: {media}")
+print(f"Mediana: {mediana}")
+print(f"Moda: {moda}")
+print(f"Variância: {variancia}")
+print(f"Desvio Padrão: {desvio_padrao}")
+print(f"Coeficiente de Variação: {coef_variação:.2f}%")
+print(f"Erro Padrão: {erro_padrao}")
+print(f"Coeficiente de Assimetria: {coef_assimetria}")
+print(f"Curtose: {curtose_valor}")

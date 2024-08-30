@@ -1,0 +1,47 @@
+import pandas as pd
+
+# Dados agrupados em intervalos
+dados = pd.DataFrame({
+    'intervalo': ['10-20', '20-30', '30-40', '40-50', '50-60'],
+    'frequencia': [5, 15, 25, 10, 5]  # Frequência de cada intervalo
+})
+
+# Convertendo intervalos para o formato de início e fim
+dados[['inicio', 'fim']] = dados['intervalo'].str.split('-', expand=True).astype(int)
+
+# Calculando a frequência acumulada
+dados['freq_acumulada'] = dados['frequencia'].cumsum()
+
+# Total de frequências (tamanho da população ou amostra)
+total_frequencia = dados['frequencia'].sum()
+
+# Função para calcular o percentil
+def calcular_percentil(percentual):
+    posicao = percentual * total_frequencia
+    intervalo = dados[dados['freq_acumulada'] >= posicao].iloc[0]
+    
+    L = intervalo['inicio']
+    F = dados[dados['freq_acumulada'] < posicao]['freq_acumulada'].sum()
+    f = intervalo['frequencia']
+    w = intervalo['fim'] - intervalo['inicio']
+    
+    percentil_valor = L + (posicao - F) / f * w
+    return percentil_valor
+
+# Calculando quartis, decis e percentis
+Q1 = calcular_percentil(0.25)
+Q2 = calcular_percentil(0.50)  # Mediana
+Q3 = calcular_percentil(0.75)
+D1 = calcular_percentil(0.10)
+D9 = calcular_percentil(0.90)
+P1 = calcular_percentil(0.01)
+P99 = calcular_percentil(0.99)
+
+# Exibindo os resultados
+print(f"1º Quartil (Q1): {Q1}")
+print(f"2º Quartil (Q2 ou Mediana): {Q2}")
+print(f"3º Quartil (Q3): {Q3}")
+print(f"1º Decil (D1): {D1}")
+print(f"9º Decil (D9): {D9}")
+print(f"1º Percentil (P1): {P1}")
+print(f"99º Percentil (P99): {P99}")

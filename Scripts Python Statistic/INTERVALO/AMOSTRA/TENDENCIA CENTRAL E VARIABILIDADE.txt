@@ -1,0 +1,57 @@
+import pandas as pd
+import numpy as np
+from scipy.stats import skew, kurtosis
+
+# Dados agrupados em intervalos
+dados = pd.DataFrame({
+    'intervalo': ['10-20', '20-30', '30-40', '40-50', '50-60'],
+    'frequencia': [5, 15, 25, 10, 5]  # Frequência de cada intervalo
+})
+
+# Convertendo intervalos para o formato de início e fim
+dados[['inicio', 'fim']] = dados['intervalo'].str.split('-', expand=True).astype(int)
+
+# Calculando o ponto médio de cada intervalo
+dados['ponto_medio'] = (dados['inicio'] + dados['fim']) / 2
+
+# Calculando o total de frequências
+total_frequencia = dados['frequencia'].sum()
+
+# Calculando a média ponderada (média da amostra)
+media = (dados['ponto_medio'] * dados['frequencia']).sum() / total_frequencia
+
+# Expandindo os dados com base na frequência para cálculo da mediana, moda e outras medidas
+dados_expandidos = dados.loc[dados.index.repeat(dados['frequencia'])].reset_index(drop=True)
+
+# Calculando a mediana
+mediana = dados_expandidos['ponto_medio'].median()
+
+# Calculando a moda
+moda = dados_expandidos['ponto_medio'].mode().iloc[0] if not dados_expandidos['ponto_medio'].mode().empty else np.nan
+
+# Variância amostral
+variancia_amostra = ((dados_expandidos['ponto_medio'] - media) ** 2).sum() / (total_frequencia - 1)
+
+# Desvio padrão amostral
+desvio_padrao_amostra = np.sqrt(variancia_amostra)
+
+# Coeficiente de variação
+coef_variação = (desvio_padrao_amostra / media) * 100
+
+# Erro padrão da média
+erro_padrao = desvio_padrao_amostra / np.sqrt(total_frequencia)
+
+# Coeficiente de assimetria e curtose (utilizando dados expandidos)
+coef_assimetria = skew(dados_expandidos['ponto_medio'], bias=False)
+curtose_valor = kurtosis(dados_expandidos['ponto_medio'], bias=False)
+
+# Exibindo os resultados
+print(f"Média: {media}")
+print(f"Mediana: {mediana}")
+print(f"Moda: {moda}")
+print(f"Variância Amostral: {variancia_amostra}")
+print(f"Desvio Padrão Amostral: {desvio_padrao_amostra}")
+print(f"Coeficiente de Variação: {coef_variação:.2f}%")
+print(f"Erro Padrão: {erro_padrao}")
+print(f"Coeficiente de Assimetria: {coef_assimetria}")
+print(f"Curtose: {curtose_valor}")

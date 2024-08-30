@@ -1,0 +1,32 @@
+import pandas as pd
+
+# Dados agrupados por frequência
+dados = pd.DataFrame({
+    'valores': [10, 20, 30, 40, 50],  # Exemplo de valores dos dados
+    'frequencia': [3, 7, 12, 5, 3]    # Frequência de cada valor
+})
+
+# Expandindo os dados com base na frequência
+dados_expandidos = dados.loc[dados.index.repeat(dados['frequencia'])].reset_index(drop=True)
+
+# Cálculo dos quartis
+Q1 = dados_expandidos['valores'].quantile(0.25)  # 1º Quartil (25%)
+Q2 = dados_expandidos['valores'].quantile(0.50)  # 2º Quartil (Mediana, 50%)
+Q3 = dados_expandidos['valores'].quantile(0.75)  # 3º Quartil (75%)
+
+# Cálculo dos decis
+D1 = dados_expandidos['valores'].quantile(0.10)  # 1º Decil (10%)
+D9 = dados_expandidos['valores'].quantile(0.90)  # 9º Decil (90%)
+
+# Cálculo dos percentis
+P1 = dados_expandidos['valores'].quantile(0.01)  # 1º Percentil (1%)
+P99 = dados_expandidos['valores'].quantile(0.99)  # 99º Percentil (99%)
+
+# Exibindo os resultados
+print(f"Q1 (1º Quartil): {Q1}")
+print(f"Q2 (2º Quartil ou Mediana): {Q2}")
+print(f"Q3 (3º Quartil): {Q3}")
+print(f"D1 (1º Decil): {D1}")
+print(f"D9 (9º Decil): {D9}")
+print(f"P1 (1º Percentil): {P1}")
+print(f"P99 (99º Percentil): {P99}")

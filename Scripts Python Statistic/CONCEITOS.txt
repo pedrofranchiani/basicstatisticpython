@@ -1,0 +1,11 @@
+Dados em: Roll(sem agrupamento), Frequencia(agrupados), Intervalo(intervalo de observações)
+
+Frequencia: Frequência absoluta e frequencia relativa
+
+Medidas de Tendencia central: média; moda; mediana;
+Medidas de Variabilidade: variancia; desvio padrão; coeficiente de variação; erro padrão; coefiente de assimetria;
+
+Curtose
+
+
+Medidas de Ordenamento: quartil; decil; percentil;

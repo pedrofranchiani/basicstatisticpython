@@ -1,0 +1,31 @@
+import pandas as pd
+
+# Supondo que você já tenha os dados definidos em 'roll'
+# Exemplo de dados
+roll = pd.Series([10, 20, 20, 40, 50, 60, 70, 80, 90, 100])
+
+# Quartis
+Q1 = roll.quantile(0.25)  # 1º Quartil
+Q2 = roll.quantile(0.50)  # 2º Quartil (Mediana)
+Q3 = roll.quantile(0.75)  # 3º Quartil
+
+# Decis
+D1 = roll.quantile(0.10)  # 1º Decil
+D2 = roll.quantile(0.20)  # 2º Decil
+D9 = roll.quantile(0.90)  # 9º Decil
+
+# Percentis
+P1 = roll.quantile(0.01)  # 1º Percentil
+P50 = roll.quantile(0.50)  # 50º Percentil (Mediana)
+P99 = roll.quantile(0.99)  # 99º Percentil
+
+# Exibindo os resultados
+print(f"Q1 (1º Quartil): {Q1}")
+print(f"Q2 (2º Quartil ou Mediana): {Q2}")
+print(f"Q3 (3º Quartil): {Q3}")
+print(f"D1 (1º Decil): {D1}")
+print(f"D2 (2º Decil): {D2}")
+print(f"D9 (9º Decil): {D9}")
+print(f"P1 (1º Percentil): {P1}")
+print(f"P50 (50º Percentil ou Mediana): {P50}")
+print(f"P99 (99º Percentil): {P99}")
