@@ -1,0 +1,8 @@
+Método 1: Baixar e Renomear: 
+Após carregar o arquivo .txt, baixe-o para o seu computador.
+Renomeie o arquivo para a extensão .py (por exemplo, nome_do_arquivo.py).
+
+Método 2: Copiar e Colar:
+Copie o conteúdo do arquivo.
+Cole no bloco de notas.
+Salve o novo arquivo com a extensão .py (por exemplo, nome_do_arquivo.py).
