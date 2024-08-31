@@ -1,4 +1,4 @@
-Descrição: Este repositório contém scripts Python para calcular estatísticas descritivas em dados agrupados em intervalos. É voltado para estudantes e acadêmicos de estatística, ajudando no entendimento e aplicação de conceitos estatísticos em dados categorizados.
+Descrição: Este repositório contém scripts Python para calcular estatísticas descritivas em dados agrupados. É voltado para estudantes e acadêmicos de estatística, ajudando no entendimento e aplicação de conceitos estatísticos em dados categorizados.
 
 
 Objetivo: O propósito principal deste projeto é fornecer ferramentas para cálculos estatísticos básicos como média, mediana, moda, variância, desvio padrão, coeficiente de variação, erro padrão, coeficiente de assimetria e curtose. As funcionalidades são voltadas para facilitar o aprendizado e a prática dos conceitos estatísticos em ambientes acadêmicos.
